@@ -41,6 +41,19 @@ def Home_screen():
     print(full_border.center(terminal_width))
     print()
 
+def Mission1_screen():
+    clear_screen()
+    terminal_width = shutil.get_terminal_size().columns
+    full_border = "=" * terminal_width
+    ascii_banner = pyfiglet.figlet_format(" MISSION 1 ", font="slant")
+    print()
+    print(full_border.center(terminal_width))
+    for line in ascii_banner.splitlines():
+        print(line.center(terminal_width))
+    print(" " * 15 +"ภารกิจที่ 1: ถอดรหัสลับ".center(terminal_width))
+    print(full_border.center(terminal_width))
+    print()
+
 # ---- rigister ID ----
 
 def rigis_ID():
@@ -60,7 +73,6 @@ def rigis_ID():
 
 # ---- เริ่มเกม ----
 def Choose_Choices_1():
-    clear_screen()
     Home_screen()
     ready = questionary.select(
         "คุณพร้อมที่จะเริ่มต้นภารกิจตามหาพี่รหัสแล้วหรือยัง?",
@@ -98,20 +110,10 @@ def Choose_Mission():
 
 # ---- game1 ----
 def Game_1():
-    clear_screen()
-    terminal_width = shutil.get_terminal_size().columns
-    full_border = "=" * terminal_width
-    ascii_banner = pyfiglet.figlet_format(" MISSION 1 ", font="slant")
-    print()
-    print(full_border.center(terminal_width))
-    for line in ascii_banner.splitlines():
-        print(line.center(terminal_width))
-    print(" " * 15 +"ภารกิจที่ 1: ถอดรหัสลับ".center(terminal_width))
-    print(full_border.center(terminal_width))
-    print()
-
+    Mission1_screen()
     unlock = 1
     while True:
+        Mission1_screen()
         Choose_level = questionary.select(
             "เลือกระดับความยากของภารกิจนี้:",
             choices=[
@@ -131,7 +133,7 @@ def Game_1():
             
         # Level 1
         elif Choose_level == f"{'⭕️' if unlock >= 1 else '❌'} [ Level 1 ] ง่ายสุดสุด " and unlock >= 1:
-            clear_screen()
+            clear_screen()        
             terminal_width = shutil.get_terminal_size().columns
             full_border = "=" * terminal_width
             ascii_banner = pyfiglet.figlet_format(" MISSION 1 ", font="slant")
@@ -157,14 +159,18 @@ def Game_1():
                     print("\n⭕️ ถูกต้อง! คุณผ่าน Level 1 แล้ว!")
                     send_spy_log("MISSION 1", "⭕️ ผ่าน Level 1 (ถอดรหัส ACS)", color=3066993)
                     unlock = max(unlock, 2) # ปลดล็อกด่าน 2
-                    input("\n(กด Enter เพื่อกลับไปหน้าเมนู...)\n")
+                    time.sleep(1)
+                    clear_screen()
                     break
                 else:
                     print("\n❌ คำตอบผิด! ลองใหม่นะ")
                     send_spy_log("MISSION 1", "❌ น้องตอบผิด : " + ans , color=15158332)
-                    time.sleep(2)
+                    time.sleep(1)
                     clear_screen()
                     break
+
+            # Level 2
+            elif Choose_level == f"{'⭕️' if unlock >= 2 else '❌'} [ Level 2 ] ง่าย " and unlock >= 2:
                     
 
                     
