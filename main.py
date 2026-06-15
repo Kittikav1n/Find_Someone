@@ -165,7 +165,7 @@ def Game_1():
             send_spy_log("MISSION1 LEVEL 2", "🔹 น้องเลือก Level 2: ง่าย", color=3066993)
             
             print("LVEVL 2: ง่าย")
-            print("\nรหัสปริศนา: 01011010 01000101 01010010 01001111 00100000 01010100 01001000 01010010 01000101 01000101")
+            print("\nรหัสปริศนา: 4F 4E 45 20 45 49 47 48 54 20 46 49 56 45")
             
             ans = questionary.text("ถอดรหัสนี้ (พิมพ์ตัวพิมพ์ใหญ่อังกฤษ): ").ask()
             while True:
@@ -174,7 +174,7 @@ def Game_1():
                     send_spy_log("MISSION1 EXITED", "⚠️ น้องออกจากภารกิจ 1 (พิมพ์ exit ออกจากด่าน)", color=15158332)
                     Choose_Mission()
                     return
-                if ans == "ZERO THREE":
+                if ans == "ONE EIGHT FIVE":
                     print("\n⭕️ ถูกต้อง! คุณผ่าน Level 2 แล้ว!")
                     send_spy_log("MISSION 1", "⭕️ ผ่าน Level 2 ", color=3066993)
                     unlock = max(unlock, 3) # ปลดล็อกด่าน 3
