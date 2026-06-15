@@ -24,6 +24,7 @@ def send_spy_log(status, message, color=3066993):
         requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=3)
     except:
         pass 
+# ---- Screen ----
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -88,9 +89,6 @@ def Choose_Choices_1():
         sys.exit()
         return False
 
-
-
-
 # ---- เลือกภารกิจ ----
 def Choose_Mission():
     clear_screen()
@@ -106,7 +104,6 @@ def Choose_Mission():
         print("\n[!] SYSTEM: บาย!")
         sys.exit()            
         return
-
 
 # ---- game1 ----
 def Game_1():
@@ -133,31 +130,23 @@ def Game_1():
             
         # Level 1
         elif Choose_level == f"{'⭕️' if unlock >= 1 else '❌'} [ Level 1 ] ง่ายสุดสุด " and unlock >= 1:
-            clear_screen()        
-            terminal_width = shutil.get_terminal_size().columns
-            full_border = "=" * terminal_width
-            ascii_banner = pyfiglet.figlet_format(" MISSION 1 ", font="slant")
-            print()
-            print(full_border.center(terminal_width))
-            for line in ascii_banner.splitlines():
-                print(line.center(terminal_width))
-            print(" " * 15 +"ภารกิจที่ 1: ถอดรหัสลับ".center(terminal_width))
-            print(full_border.center(terminal_width))
-            print()
+            Mission1_screen()
 
             send_spy_log("MISSION1 LEVEL 1", "🔹 น้องเลือก Level 1: ง่ายสุดสุด", color=3066993)
 
-            print("\nรหัสปริศนา: 01000001 01000011 01010011")
-            ans = questionary.text("ถอดรหัสนี้ (พิมพ์ตัวพิมพ์ใหญ่อังกฤษ 3 ตัว): ").ask()
+            print("LVEVL 1: ง่ายสุดสุด")
+            print("\nรหัสปริศนา: 01011010 01000101 01010010 01001111 00100000 01010100 01001000 01010010 01000101 01000101")
+            
+            ans = questionary.text("ถอดรหัสนี้ (พิมพ์ตัวพิมพ์ใหญ่อังกฤษ): ").ask()
             while True:
                 if ans.lower() == "exit":
                     print("\n[!] SYSTEM: กลับสู่หน้าหลัก...\n")
                     send_spy_log("MISSION1 EXITED", "⚠️ น้องออกจากภารกิจ 1 (พิมพ์ exit ออกจากด่าน)", color=15158332)
                     Choose_Mission()
                     return
-                if ans == "ACS":
+                if ans == "ZERO THREE":
                     print("\n⭕️ ถูกต้อง! คุณผ่าน Level 1 แล้ว!")
-                    send_spy_log("MISSION 1", "⭕️ ผ่าน Level 1 (ถอดรหัส ACS)", color=3066993)
+                    send_spy_log("MISSION 1", "⭕️ ผ่าน Level 1 ", color=3066993)
                     unlock = max(unlock, 2) # ปลดล็อกด่าน 2
                     time.sleep(1)
                     clear_screen()
@@ -169,8 +158,38 @@ def Game_1():
                     clear_screen()
                     break
 
-            # Level 2
-            elif Choose_level == f"{'⭕️' if unlock >= 2 else '❌'} [ Level 2 ] ง่าย " and unlock >= 2:
+        # Level 2
+        elif Choose_level == f"{'⭕️' if unlock >= 2 else '❌'} [ Level 2 ] ง่าย " and unlock >= 2:
+            Mission1_screen()
+
+            send_spy_log("MISSION1 LEVEL 2", "🔹 น้องเลือก Level 2: ง่าย", color=3066993)
+            
+            print("LVEVL 2: ง่าย")
+            print("\nรหัสปริศนา: 01011010 01000101 01010010 01001111 00100000 01010100 01001000 01010010 01000101 01000101")
+            
+            ans = questionary.text("ถอดรหัสนี้ (พิมพ์ตัวพิมพ์ใหญ่อังกฤษ): ").ask()
+            while True:
+                if ans.lower() == "exit":
+                    print("\n[!] SYSTEM: กลับสู่หน้าหลัก...\n")
+                    send_spy_log("MISSION1 EXITED", "⚠️ น้องออกจากภารกิจ 1 (พิมพ์ exit ออกจากด่าน)", color=15158332)
+                    Choose_Mission()
+                    return
+                if ans == "ZERO THREE":
+                    print("\n⭕️ ถูกต้อง! คุณผ่าน Level 2 แล้ว!")
+                    send_spy_log("MISSION 1", "⭕️ ผ่าน Level 2 ", color=3066993)
+                    unlock = max(unlock, 3) # ปลดล็อกด่าน 3
+                    time.sleep(1)
+                    clear_screen()
+                    break
+                else:
+                    print("\n❌ คำตอบผิด! ลองใหม่นะ")
+                    send_spy_log("MISSION 1", "❌ น้องตอบผิด : " + ans , color=15158332)
+                    time.sleep(1)
+                    clear_screen()
+                    break
+
+
+
                     
 
                     
