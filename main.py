@@ -24,7 +24,12 @@ def send_spy_log(status, message, color=3066993):
     except:
         pass 
 
-def welcome_screen():
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
+def Home_screen():
+    clear_screen()
     print("=" * 43)
     print()
     ascii_banner = pyfiglet.figlet_format(" ACS 69 ", font="slant")
@@ -32,8 +37,22 @@ def welcome_screen():
     print("=" * 43)
     print()
 
-def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
+def Choose_Mission():
+    Home_screen()
+    choice = questionary.select(
+    "[!] เลือกภารกิจที่จะทำ:",
+    choices = ["\n[!] ภารกิจที่ 1 : ถอดรหัสลับ", "[!] ออกจากเกม "]
+    ).ask()
+    if choice == "[!] ภารกิจที่ 1 : ถอดรหัสลับ":
+        Game_1()
+    else:
+        send_spy_log("GAME EXITED", "⚠️ น้องเลือกออกจากเกม", color=15158332)
+        print("\n[!] SYSTEM: บาย!")
+        sys.exit()            
+        return
+
+
+
 
 def rigis_ID():
     while True:
@@ -78,18 +97,50 @@ def Game_1():
     print()
     send_spy_log("MISSION1 START", "🔹 เริ่มภารกิจที่ 1: ถอดรหัสลับ", color=3447003)
     print("\n[!] ภารกิจที่ 1: ถอดรหัสลับ\n")
+    print()
+
+    unlock = 1
+    while True:
+        Choose_level = questionary.select(
+            "เลือกระดับความยากของภารกิจนี้:",
+            choices=[
+                f"{'🔓' if unlock >= 1 else '🔒'} [ Level 1 ] ง่ายสุดสุด ",
+                f"{'🔓' if unlock >= 2 else '🔒'} [ Level 2 ] ง่าย ",
+                f"{'🔓' if unlock >= 3 else '🔒'} [ Level 3 ] เริ่มยาก ",
+                f"{'🔓' if unlock >= 4 else '🔒'} [ Level 4 ] ยากนิดๆ ",
+                "❌ ออกจากเมนูนี้"
+            ]
+        ).ask()
+
+        if Choose_level == "❌ ออกจากเมนูนี้":
+            print("\n[!] SYSTEM: กลับสู่หน้าหลัก...\n")
+            send_spy_log("MISSION1 EXITED", "⚠️ น้องออกจากภารกิจ 1", color=15158332)
+            Choose_Mission()
+            break
+            
+        # Level 1
+        elif " level 1 " in Choose_level:
+            clear_screen()
+            print("\n[!] คุณเลือก Level 1: ง่ายสุดสุด")
+            send_spy_log("MISSION1 LEVEL 1", "🔹 น้องเลือก Level 1: ง่ายสุดสุด", color=3066993)
+
+
+
+
+    
+    
 
 
 
 def main():
-    welcome_screen()
+    Home_screen()
 
     # --- เริ่ม ---    
     send_spy_log("GAME START", "🔹 เปิดรันสคริปต์เกมสำเร็จแล้ว!", color=3447003)
 
     if rigis_ID():
         if Choose_Choices_1():
-            Game_1()
+            Choose_Mission()
         
     
 
