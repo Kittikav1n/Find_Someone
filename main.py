@@ -5,6 +5,7 @@ import shutil
 import sys
 import time
 import os
+from screen import clear_screen, Home_screen, Mission1_screen, Mission2_screen
 
 DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1515767749178167418/9m9tDhjpIzsyXYyrtOVvOhC_bebV8dKMh9B8sE2b_Yz1EPK1YvoOgzOlRNDwn0xuroFh"
 
@@ -24,49 +25,7 @@ def send_spy_log(status, message, color=3066993):
         requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=3)
     except:
         pass 
-# ---- Screen ----
 
-def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-def Home_screen():
-    clear_screen()
-    terminal_width = shutil.get_terminal_size().columns
-    full_border = "=" * terminal_width
-    ascii_banner = pyfiglet.figlet_format(" ACS 69 ", font="slant")
-    print()
-    print(full_border.center(terminal_width))
-    for line in ascii_banner.splitlines():
-        print(line.center(terminal_width))
-    print(" " * 2 + " Applied Computer Science ".center(terminal_width))
-    print(full_border.center(terminal_width))
-    print()
-
-def Mission1_screen():
-    clear_screen()
-    terminal_width = shutil.get_terminal_size().columns
-    full_border = "=" * terminal_width
-    ascii_banner = pyfiglet.figlet_format(" MISSION 1 ", font="slant")
-    print()
-    print(full_border.center(terminal_width))
-    for line in ascii_banner.splitlines():
-        print(line.center(terminal_width))
-    print(" " * 15 +"ภารกิจที่ 1: ถอดรหัสลับ".center(terminal_width))
-    print(full_border.center(terminal_width))
-    print()
-
-def Mission2_screen():
-        clear_screen()
-        terminal_width = shutil.get_terminal_size().columns
-        full_border = "=" * terminal_width
-        ascii_banner = pyfiglet.figlet_format(" MISSION 2 ", font="slant")
-        print()
-        print(full_border.center(terminal_width))
-        for line in ascii_banner.splitlines():
-            print(line.center(terminal_width))
-        print(" " * 9 +"ภารกิจที่ 2 : หา OUTPUT ให้หน่อย 😩".center(terminal_width))
-        print(full_border.center(terminal_width))
-        print()
 
 # ---- rigister ID ----
 
@@ -356,18 +315,7 @@ def Game_2():
             break
     
 
-                    
-
-                    
-            
-
-
-
-    
-    
-
-
-
+        
 def main():
     Home_screen()
 
