@@ -55,6 +55,19 @@ def Mission1_screen():
     print(full_border.center(terminal_width))
     print()
 
+def Mission2_screen():
+        clear_screen()
+        terminal_width = shutil.get_terminal_size().columns
+        full_border = "=" * terminal_width
+        ascii_banner = pyfiglet.figlet_format(" MISSION 2 ", font="slant")
+        print()
+        print(full_border.center(terminal_width))
+        for line in ascii_banner.splitlines():
+            print(line.center(terminal_width))
+        print(" " * 9 +"ภารกิจที่ 2 : หา OUTPUT ให้หน่อย 😩".center(terminal_width))
+        print(full_border.center(terminal_width))
+        print()
+
 # ---- rigister ID ----
 
 def rigis_ID():
@@ -98,6 +111,7 @@ def Choose_Mission():
     choices = ["[⭕️] ภารกิจที่ 1 : ถอดรหัสลับ", "[❌] ออกจากเกม "]
     ).ask()
     if choice == "[⭕️] ภารกิจที่ 1 : ถอดรหัสลับ":
+        send_spy_log("MISSION 1", "🔹 น้องเลือก Mission 1", color=15158332)
         return Game_1() 
     else:
         send_spy_log("GAME EXITED", "⚠️ น้องเลือกออกจากเกม", color=15158332)
@@ -110,10 +124,11 @@ def Choose_Mission2():
     Home_screen()
     choice = questionary.select(
     "[!] เลือกภารกิจที่จะทำ:",
-    choices = ["[⭕️] ภารกิจที่ 2 : .......", "[❌] ออกจากเกม "]
+    choices = ["[⭕️] ภารกิจที่ 2 : หา OUTPUT ให้หน่อย 😩", "[❌] ออกจากเกม "]
     ).ask()
-    if choice == "[⭕️] ภารกิจที่ 2 : .......":
-        Game_1()
+    if choice == "[⭕️] ภารกิจที่ 2 : หา OUTPUT ให้หน่อย 😩":
+        send_spy_log("MISSION 2", "🔹 น้องเลือก Mission 2", color=15158332)
+        Game_2()
     else:
         send_spy_log("GAME EXITED", "⚠️ น้องเลือกออกจากเกม", color=15158332)
         print("\n[!] SYSTEM: บาย!")
@@ -301,6 +316,45 @@ def Game_1():
             continue 
 
 
+def Game_2():
+    Mission2_screen()
+    unlock = 1
+    while True:
+        if unlock == 5:
+            clear_screen()
+            terminal_width = shutil.get_terminal_size().columns
+            full_border = "=" * terminal_width
+            ascii_banner = pyfiglet.figlet_format(" MISSION 2 SUCCEED ", font="slant")
+            print()
+            print(full_border)
+            for line in ascii_banner.splitlines():
+                print(line.center(terminal_width))
+            print(full_border)
+            print("\n" + "🎉 ยินดีด้วย! คุณผ่านภารกิจหา OUTPUT ครบถ้วนแล้ว 🎉".center(terminal_width))
+            
+            input("\n" + "(กด Enter เพื่อบันทึกข้อมูลและกลับสู่หน้าหลัก...)".center(terminal_width))
+            clear_screen()
+            Home_screen()
+            return True
+
+        Mission2_screen()
+        Choose_level = questionary.select(
+            "เลือกระดับความยากของภารกิจนี้:",
+            choices=[
+                f"{'⭕️' if unlock >= 1 else '❌'} [ Level 1 ] ง่าย ",
+                f"{'⭕️' if unlock >= 2 else '❌'} [ Level 2 ] ง่ายย ",
+                f"{'⭕️' if unlock >= 3 else '❌'} [ Level 3 ] ง่ายยย ",
+                f"{'⭕️' if unlock >= 4 else '❌'} [ Level 4 ] ง่ายยยย ",
+                "👋 [  EXIT.  ] ออกจากภารกิจ "
+            ]
+        ).ask()
+
+        if Choose_level == "👋 [  EXIT.  ] ออกจากภารกิจ ":
+            print("\n[!] SYSTEM: กลับสู่หน้าหลัก...\n")
+            send_spy_log("MISSION1 EXITED", "⚠️ น้องออกจากภารกิจ 1", color=15158332)
+            Choose_Mission2()
+            break
+    
 
                     
 
