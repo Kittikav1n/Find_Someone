@@ -98,6 +98,21 @@ def Choose_Mission():
     choices = ["[⭕️] ภารกิจที่ 1 : ถอดรหัสลับ", "[❌] ออกจากเกม "]
     ).ask()
     if choice == "[⭕️] ภารกิจที่ 1 : ถอดรหัสลับ":
+        return Game_1() 
+    else:
+        send_spy_log("GAME EXITED", "⚠️ น้องเลือกออกจากเกม", color=15158332)
+        print("\n[!] SYSTEM: บาย!")
+        sys.exit()            
+        return
+    
+def Choose_Mission2():
+    clear_screen()
+    Home_screen()
+    choice = questionary.select(
+    "[!] เลือกภารกิจที่จะทำ:",
+    choices = ["[⭕️] ภารกิจที่ 2 : .......", "[❌] ออกจากเกม "]
+    ).ask()
+    if choice == "[⭕️] ภารกิจที่ 2 : .......":
         Game_1()
     else:
         send_spy_log("GAME EXITED", "⚠️ น้องเลือกออกจากเกม", color=15158332)
@@ -114,7 +129,6 @@ def Game_1():
             clear_screen()
             terminal_width = shutil.get_terminal_size().columns
             full_border = "=" * terminal_width
-            # เอา 🎉 ออกจาก pyfiglet เพราะโมดูลตัวหนังสือตัวเอียง (slant) ไม่รองรับอิโมจิ จะทำให้ฟอนต์เพี้ยน
             ascii_banner = pyfiglet.figlet_format(" MISSION 1 SUCCEED ", font="slant")
             print()
             print(full_border)
@@ -153,14 +167,13 @@ def Game_1():
                 time.sleep(1)
                 continue
 
-            while True: # ลูปขังตัวจนกว่าจะตอบถูก หรือ พิมพ์ exit
+            while True: 
                 Mission1_screen()
                 send_spy_log("MISSION1 LEVEL 1", "🔹 น้องเลือก Level 1: ง่ายสุดสุด", color=3066993)
 
                 print("LVEVL 1: ง่ายสุดสุด")
                 print("\nรหัสปริศนา: 01011010 01000101 01010010 01001111 00100000 01010100 01001000 01010010 01000101 01000101")
                 
-                # 🌟 จุดแก้ไขที่ 3: ย้ายมาอยู่ด้านในลูปย่อย เพื่อให้น้องกรอกตอบซ้ำได้เมื่อพิมพ์ผิด
                 ans = questionary.text("ถอดรหัสนี้ (พิมพ์ตัวพิมพ์ใหญ่อังกฤษ): ").ask()
                 
                 if ans.lower() == "exit":
@@ -172,13 +185,13 @@ def Game_1():
                     print("\n⭕️ ถูกต้อง! คุณผ่าน Level 1 แล้ว!")
                     send_spy_log("MISSION 1", "⭕️ ผ่าน Level 1 ", color=3066993)
                     unlock = max(unlock, 2) # ปลดล็อกด่าน 2
-                    time.sleep(1)
+                    time.sleep(0.5)
                     clear_screen()
-                    break # หลุดลูปคำถาม กลับไปเจอหน้าเมนูหลักเลเวล 2
+                    break 
                 else:
                     print("\n❌ คำตอบผิด! ลองใหม่นะ")
                     send_spy_log("MISSION 1", "❌ น้องตอบผิด : " + ans , color=15158332)
-                    time.sleep(1)
+                    time.sleep(0.5)
                     clear_screen()
 
         # ---- Level 2 ----
@@ -186,7 +199,7 @@ def Game_1():
         elif "Level 2" in Choose_level:
             if unlock < 2:
                 print("\n🔒 [ACCESS DENIED]: คุณต้องผ่าน Level 1 ก่อน!")
-                time.sleep(1)
+                time.sleep(0.5)
                 continue
 
             while True:
@@ -207,13 +220,13 @@ def Game_1():
                     print("\n⭕️ ถูกต้อง! คุณผ่าน Level 2 แล้ว!")
                     send_spy_log("MISSION 1", "⭕️ ผ่าน Level 2 ", color=3066993)
                     unlock = max(unlock, 3) # ปลดล็อกด่าน 3
-                    time.sleep(1)
+                    time.sleep(0.5)
                     clear_screen()
                     break
                 else:
                     print("\n❌ คำตอบผิด! ลองใหม่นะ")
                     send_spy_log("MISSION 1", "❌ น้องตอบผิด : " + ans , color=15158332)
-                    time.sleep(1)
+                    time.sleep(0.5)
                     clear_screen()
 
         # ---- Level 3 ----
@@ -221,7 +234,7 @@ def Game_1():
         elif "Level 3" in Choose_level:
             if unlock < 3:
                 print("\n🔒 [ACCESS DENIED]: คุณต้องผ่าน Level 2 ก่อน!")
-                time.sleep(1)
+                time.sleep(0.5)
                 continue
 
             while True:
@@ -242,13 +255,13 @@ def Game_1():
                     print("\n⭕️ ถูกต้อง! คุณผ่าน Level 3 แล้ว!")
                     send_spy_log("MISSION 1", "⭕️ ผ่าน Level 3 ", color=3066993)
                     unlock = max(unlock, 4) # ปลดล็อกด่าน 4
-                    time.sleep(1)
+                    time.sleep(0.5)
                     clear_screen()
                     break
                 else:
                     print("\n❌ คำตอบผิด! ลองใหม่นะ")
                     send_spy_log("MISSION 1", "❌ น้องตอบผิด : " + ans , color=15158332)
-                    time.sleep(1)
+                    time.sleep(0.5)
                     clear_screen()
 
         # ---- Level 4 ----
@@ -256,7 +269,7 @@ def Game_1():
         elif "Level 4" in Choose_level:
             if unlock < 4:
                 print("\n🔒 [ACCESS DENIED]: คุณต้องผ่าน Level 3 ก่อน!")
-                time.sleep(1)
+                time.sleep(0.5)
                 continue
 
             while True:
@@ -276,14 +289,14 @@ def Game_1():
                 if ans.strip() == "MALE":
                     print("\n⭕️ ถูกต้อง! คุณผ่าน Level 4 แล้ว!")
                     send_spy_log("MISSION 1", "⭕️ ผ่าน Level 4 ", color=3066993)
-                    time.sleep(1)
-                    unlock = 5 # 💡 ปลดล็อกเงื่อนไขฉลองชัยชนะหลัก
+                    time.sleep(0.5)
+                    unlock = 5 
                     clear_screen()
                     break
                 else:
                     print("\n❌ คำตอบผิด! ลองใหม่นะ")
                     send_spy_log("MISSION 1", "❌ น้องตอบผิด : " + ans , color=15158332)
-                    time.sleep(1)
+                    time.sleep(0.5)
                     clear_screen()            
             continue 
 
@@ -309,7 +322,9 @@ def main():
 
     if rigis_ID():
         if Choose_Choices_1():
-            Choose_Mission()
+            if Choose_Mission():
+                Choose_Mission2()
+
         
     
 
